@@ -1,4 +1,5 @@
-import express, { ErrorRequestHandler } from "express";
+import express from "express";
+import cors from "cors";
 import createHttpError from "http-errors";
 import UserRoutes from "./routes/UserRoutes";
 import ContentRoutes from "./routes/ContentRoutes";
@@ -7,7 +8,7 @@ import { DB, PORT } from "./config";
 import { errorHandler } from "./middleware/errorHanlder";
 import morgan from "morgan";
 const app = express();
-app.use([express.json(), express.urlencoded({ extended: true })]);
+app.use([express.json(), express.urlencoded({ extended: true }), cors()]);
 
 app.use("/api/user", UserRoutes);
 app.use("/api/manage-content", ContentRoutes);
