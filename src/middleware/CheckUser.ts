@@ -8,4 +8,4 @@ const CheckUser = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
-export default CheckUser
+export default CheckUser;

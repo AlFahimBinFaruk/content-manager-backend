@@ -5,6 +5,7 @@ import asyncHandler from "express-async-handler";
 //user model
 import User from "../model/UserModel";
 
+//Jwt Payload interface
 interface JwtPayload {
   id: string;
 }

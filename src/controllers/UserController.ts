@@ -130,11 +130,11 @@ export const updateAccount = asyncHandler(async (req, res) => {
   const updatedUserCreds = await User.findByIdAndUpdate(id, req.body, {
     new: true,
   });
-  //send teh upated user data
+  //send the upated user data
   res.status(200).json({ id: id, data: updatedUserCreds });
 });
 
-//genarate token
+//function genarate token
 const genarateToken = (id: string) => {
   return jwt.sign({ id }, process.env.JWT_SECRET!, {
     expiresIn: "30d",
