@@ -1,12 +1,8 @@
 import { ErrorRequestHandler } from "express";
 
+//re-write defautl error handler of express ,to handle them properly
 export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
-  console.log(err.message, err.statusCode);
-  if (res.headersSent) {
-    return next(err);
-  }
-
-  res
-    .status(err.statusCode || 500)
-    .json({ message: err.message || "An Unknown Error" });
+  const statusCode = res.statusCode ? res.statusCode : 500;
+  res.status(statusCode);
+  res.json({ message: err.message });
 };

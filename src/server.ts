@@ -1,15 +1,16 @@
 import express, { ErrorRequestHandler } from "express";
 import createHttpError from "http-errors";
-import exampleRoute from "./routes/exampleRoutes";
+import UserRoutes from "./routes/UserRoutes";
+import ContentRoutes from "./routes/ContentRoutes";
 import mongoose from "mongoose";
 import { DB, PORT } from "./config";
 import { errorHandler } from "./middleware/errorHanlder";
 import morgan from "morgan";
 const app = express();
-app.use(express.json());
+app.use([express.json(), express.urlencoded({ extended: true })]);
 
-app.use("/", exampleRoute);
-
+app.use("/api/user", UserRoutes);
+app.use("/api/manage-content", ContentRoutes);
 app.use(() => {
   throw createHttpError(404, "Route not found");
 });
