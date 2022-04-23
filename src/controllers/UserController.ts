@@ -131,7 +131,10 @@ export const updateAccount = asyncHandler(async (req, res) => {
     new: true,
   });
   //send the upated user data
-  res.status(200).json({ id: id, data: updatedUserCreds });
+  res.status(201).json({
+    id,
+    ...updatedUserCreds,
+  });
 });
 
 //function genarate token
