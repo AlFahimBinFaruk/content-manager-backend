@@ -8,7 +8,8 @@
     "watch": "tsc -w",
     "start": "node ./dist/server.js",
     "start2": "nodemon ./dist/server.js",
-    "dev": "npm-run-all --parallel watch start2"
+    "dev": "npm-run-all --parallel watch start2",
+    "build":"tsc"
   },
   "keywords": [],
   "author": "",

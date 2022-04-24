@@ -85,6 +85,7 @@ export const loginWithGoogle = asyncHandler(async (req, res) => {
       id: userExits.id,
       username: userExits.username,
       email: userExits.email,
+      loginWithGoogle: true,
       token: genarateToken(userExits.id),
     });
   } else {
@@ -101,6 +102,7 @@ export const loginWithGoogle = asyncHandler(async (req, res) => {
         id: user.id,
         username: user.username,
         email: user.email,
+        loginWithGoogle: true,
         token: genarateToken(user.id),
       });
     } else {
