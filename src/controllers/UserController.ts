@@ -127,14 +127,22 @@ export const updateAccount = asyncHandler(async (req, res) => {
     throw new Error("please provide a valid id");
   }
 
-  const updatedUserCreds = await User.findByIdAndUpdate(id, req.body, {
+  const updatedUserCreds: any = await User.findByIdAndUpdate(id, req.body, {
     new: true,
   });
-  //send the upated user data
-  res.status(201).json({
-    id,
-    ...updatedUserCreds,
-  });
+  if (updatedUserCreds) {
+    let { _id, username, email } = updatedUserCreds
+    //send the upated user data
+    res.status(201).json({
+      id: _id,
+      username,
+      email,
+      token: genarateToken(id),
+    });
+  } else {
+    res.status(400);
+    throw new Error("Some Error Occured");
+  }
 });
 
 //function genarate token
